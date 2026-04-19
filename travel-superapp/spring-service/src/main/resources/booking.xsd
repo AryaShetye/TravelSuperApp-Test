@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://travelsuperapp.com/booking"
+           targetNamespace="http://travelsuperapp.com/booking"
+           elementFormDefault="qualified">
+
+    <!-- Request -->
+    <xs:element name="verifyBookingRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookingId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Response -->
+    <xs:element name="verifyBookingResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="verified" type="xs:boolean"/>
+                <xs:element name="bookingId" type="xs:string"/>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+                <xs:element name="propertyName" type="xs:string" minOccurs="0"/>
+                <xs:element name="checkIn" type="xs:string" minOccurs="0"/>
+                <xs:element name="checkOut" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

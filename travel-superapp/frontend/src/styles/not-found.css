@@ -1,0 +1,36 @@
+/* 404 Not Found page */
+.not-found-page {
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.not-found-content {
+  text-align: center;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.not-found-icon { font-size: 64px; animation: float 3s ease-in-out infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.not-found-code {
+  font-size: 96px;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.not-found-title { font-size: var(--font-size-2xl); font-weight: 700; }
+.not-found-message { font-size: var(--font-size-base); color: var(--color-text-secondary); line-height: 1.6; }
+
+.not-found-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }

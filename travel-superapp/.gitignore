@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment files — NEVER commit these
+.env
+**/.env
+!**/.env.example
+
+# Build outputs
+build/
+dist/
+target/
+*.jar
+*.war
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+*.iml
+
+# Java
+*.class
+.mvn/
+
+# React
+frontend/build/
+
+# Test coverage
+coverage/

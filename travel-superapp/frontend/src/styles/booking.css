@@ -1,0 +1,91 @@
+/* Booking page */
+.booking-page { padding: 40px 0 80px; }
+
+.booking-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Summary section */
+.booking-summary { display: flex; flex-direction: column; gap: 32px; }
+
+.summary-heading {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 16px;
+}
+
+.summary-row {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.summary-label { font-size: var(--font-size-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-secondary); margin-bottom: 4px; }
+.summary-value { font-size: var(--font-size-base); font-weight: 500; }
+.summary-sub { font-weight: 400; color: var(--color-text-secondary); }
+
+.guest-info { font-size: var(--font-size-sm); line-height: 1.8; }
+
+.policy-text { font-size: var(--font-size-sm); color: var(--color-text-secondary); line-height: 1.6; }
+
+/* Payment panel */
+.payment-panel {
+  position: sticky;
+  top: calc(var(--navbar-height) + 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.property-mini-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.property-mini-image {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.property-mini-name { font-weight: 600; font-size: var(--font-size-sm); margin-bottom: 4px; }
+.property-mini-location { font-size: var(--font-size-xs); color: var(--color-text-secondary); }
+
+.price-breakdown-card {
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+  padding: 8px 0;
+}
+
+.price-divider { height: 1px; background: var(--color-border); margin: 8px 0; }
+
+.price-total { font-size: var(--font-size-base); padding-top: 12px; }
+
+.btn-pay { font-size: var(--font-size-base); padding: 16px; border-radius: var(--radius-md); }
+
+.secure-payment-note {
+  text-align: center;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 900px) {
+  .booking-layout { grid-template-columns: 1fr; }
+  .payment-panel { position: static; }
+}

@@ -1,0 +1,90 @@
+/* Filters panel */
+.filters-panel {
+  background: white;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.filters-title { font-size: var(--font-size-lg); font-weight: 600; }
+
+.filters-reset {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.filter-group {
+  border: none;
+  padding: 0;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+.filter-group:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.filter-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+.filter-options { display: flex; flex-direction: column; gap: 10px; }
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+}
+
+.filter-radio { accent-color: var(--color-primary); width: 16px; height: 16px; cursor: pointer; }
+
+.filter-option-label { color: var(--color-text); }
+
+/* Price range */
+.price-range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.price-input-group { flex: 1; }
+
+.price-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  background: white;
+}
+.price-input:focus { outline: none; border-color: var(--color-text); }
+
+.price-separator { color: var(--color-text-secondary); font-weight: 500; }
+
+.filter-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  background: white;
+  cursor: pointer;
+}

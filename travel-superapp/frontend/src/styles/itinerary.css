@@ -1,0 +1,172 @@
+/* Itinerary page */
+.itinerary-page { padding: 40px 0 80px; }
+
+.itinerary-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.itinerary-title { font-size: var(--font-size-3xl); font-weight: 700; }
+.booking-ref { font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: 4px; }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.itinerary-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 32px;
+  align-items: start;
+}
+
+.itinerary-main { display: flex; flex-direction: column; gap: 24px; }
+
+.itinerary-card {
+  background: white;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.card-heading {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Property summary */
+.property-summary { display: flex; gap: 16px; }
+
+.property-summary-image {
+  width: 100px;
+  height: 80px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.property-summary-name { font-size: var(--font-size-lg); font-weight: 600; margin-bottom: 4px; }
+.property-summary-location { font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: 4px; }
+.property-summary-type { font-size: var(--font-size-xs); text-transform: capitalize; color: var(--color-text-secondary); }
+
+/* Stay details */
+.stay-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.stay-detail {}
+.detail-label { font-size: var(--font-size-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-secondary); margin-bottom: 4px; }
+.detail-value { font-size: var(--font-size-base); font-weight: 600; margin-bottom: 2px; }
+.detail-sub { font-size: var(--font-size-xs); color: var(--color-text-secondary); }
+
+/* Host */
+.host-contact-name { font-size: var(--font-size-lg); font-weight: 600; margin-bottom: 8px; }
+.host-contact-note { font-size: var(--font-size-sm); color: var(--color-text-secondary); line-height: 1.6; }
+
+/* Rules */
+.rules-list { display: flex; flex-direction: column; gap: 12px; }
+.rules-list li { font-size: var(--font-size-sm); }
+
+/* Sidebar */
+.itinerary-sidebar {
+  position: sticky;
+  top: calc(var(--navbar-height) + 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.payment-summary-card {
+  background: white;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.payment-rows { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+
+.payment-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+}
+
+.payment-divider { height: 1px; background: var(--color-border); margin: 8px 0; }
+.payment-total { font-size: var(--font-size-base); }
+
+.payment-status { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--color-border); }
+.payment-method { font-size: var(--font-size-sm); font-weight: 500; text-transform: capitalize; }
+.payment-date { font-size: var(--font-size-xs); color: var(--color-text-secondary); margin-top: 2px; }
+
+.itinerary-actions { display: flex; flex-direction: column; gap: 10px; }
+
+@media (max-width: 900px) {
+  .itinerary-layout { grid-template-columns: 1fr; }
+  .itinerary-sidebar { position: static; }
+  .stay-details-grid { grid-template-columns: 1fr; }
+}
+
+@media print {
+  .itinerary-actions, .navbar, .footer { display: none !important; }
+  .itinerary-layout { grid-template-columns: 1fr; }
+}
+
+/* Transport section in itinerary */
+.transport-itinerary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.transport-route-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.route-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.pickup-dot { background: #22c55e; }
+.dropoff-dot { background: #ef4444; }
+
+.transport-meta-item {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-pending { background: #fef3c720; color: #f59e0b; }
+.status-accepted { background: #dbeafe; color: #3b82f6; }
+.status-in_progress { background: #ede9fe; color: #8b5cf6; }
+.status-completed { background: #dcfce7; color: #22c55e; }
+.status-cancelled { background: #fee2e2; color: #ef4444; }
