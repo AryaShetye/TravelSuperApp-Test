@@ -13,7 +13,7 @@ const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 
 // Database
-// const { initDB } = require('./config/db');
+const { initDB } = require('./config/db');
 let pgPool;
 
 // Socket.io
@@ -44,18 +44,48 @@ app.get('/', (_req, res) => {
 
 
 // ─── CORS ─────────────────────────────────────────────────────────────────────
+// app.use(cors({
+//   origin: [
+//     process.env.FRONTEND_URL,
+//     'https://travel-super-app-test.vercel.app',
+//     'https://travel-super-app-test-9u716ana8-aryashetyes-projects.vercel.app'
+//   ],
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// }));
+
+// app.options('*', cors());
+
+
+// Replace your current cors() block with this:
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'https://travel-super-app-test.vercel.app',
+    'https://travel-super-app-test-9u716ana8-aryashetyes-projects.vercel.app',
+].filter(Boolean); // ← this is the critical fix
+
 app.use(cors({
-  origin: [
-    process.env.FRONTEND_URL,
-    'https://travel-super-app-test.vercel.app',
-    'https://travel-super-app-test-9u716ana8-aryashetyes-projects.vercel.app'
-  ],
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS blocked'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-app.options('*', cors());
+app.options('*', cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+    else callback(new Error('CORS blocked'));
+  },
+  credentials: true,
+}));
+
 
 // app.use(cors({
 //   origin: [
