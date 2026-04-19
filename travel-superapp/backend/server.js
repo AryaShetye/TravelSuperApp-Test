@@ -43,16 +43,6 @@ app.get('/', (_req, res) => {
 });
 
 
-
-
-// ─── Initialize Socket.io ─────────────────────────────────────────────────────
-initSocket(server);
-
-// ─── Security Middleware ──────────────────────────────────────────────────────
-app.use(helmet({
-  crossOriginResourcePolicy: { policy: 'cross-origin' },
-}));
-
 // ─── CORS ─────────────────────────────────────────────────────────────────────
 app.use(cors({
   origin: [
@@ -65,6 +55,8 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
+app.options('*', cors());
+
 // app.use(cors({
 //   origin: [
 //     process.env.FRONTEND_URL || 'http://localhost:3000',
@@ -75,6 +67,14 @@ app.use(cors({
 //   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 //   allowedHeaders: ['Content-Type', 'Authorization'],
 // }));
+
+// ─── Security Middleware ──────────────────────────────────────────────────────
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' },
+}));
+
+// ─── Initialize Socket.io ─────────────────────────────────────────────────────
+initSocket(server);
 
 // ─── Rate Limiting ────────────────────────────────────────────────────────────
 const globalLimiter = rateLimit({
@@ -166,7 +166,7 @@ const { startPriceAlertJob } = require('./services/priceAlertJob');
 async function startServer() {
   try {
     // ✅ Connect Mongo + Postgres
-    await connectDB();
+    // await connectDB();
 
     // ✅ Seed data
     await seedData();
