@@ -167,13 +167,13 @@ const { startJobs } = require('./services/jobs.service');
 async function startServer() {
   try {
     // ✅ Connect Mongo + Postgres
-    // await connectDB();
+    await initDB();
 
     // ✅ Seed data
     await seedData();
 
     // ✅ Start cron jobs
-    startPriceAlertJob();
+    startJobs();
 
     // ✅ Start server
     server.listen(PORT, () => {
