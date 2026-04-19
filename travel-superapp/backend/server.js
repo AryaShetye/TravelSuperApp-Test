@@ -36,7 +36,7 @@ const serpapiRoutes = require('./routes/serpapi.routes');
 const chatRoutes = require('./routes/chat.routes');
 
 const app = express();
-app.set('trust proxy',1);
+app.set('trust proxy',true);
 const server = http.createServer(app);
 app.get('/', (_req, res) => {
   res.send("Travel Super App Backend Running 🚀");
