@@ -47,8 +47,8 @@ app.get('/', (_req, res) => {
 app.use(cors({
   origin: [
     process.env.FRONTEND_URL,
-    'http://localhost:3000',
-    'http://localhost:3001'
+    'https://travel-super-app-test.vercel.app',
+    'https://travel-super-app-test-9u716ana8-aryashetyes-projects.vercel.app'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -161,7 +161,8 @@ app.use((err, _req, res, _next) => {
 const PORT = process.env.PORT || 5000;
 
 const { seedData } = require('./utils/seed');
-const { startPriceAlertJob } = require('./services/priceAlertJob');
+const { startJobs } = require('./services/jobs.service');
+//const { startPriceAlertJob } = require('./services/priceAlertJob');
 
 async function startServer() {
   try {

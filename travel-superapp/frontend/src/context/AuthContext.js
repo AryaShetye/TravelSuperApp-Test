@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
     const token = localStorage.getItem('token');
     if (token) {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      api.get('/api/auth/me')
+      api.get('/auth/me')
         .then((res) => setUser(res.data.user))
         .catch(() => {
           localStorage.removeItem('token');
@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = useCallback(async (email, password) => {
-    const res = await api.post('/api/auth/login', { email, password });
+    const res = await api.post('/auth/login', { email, password });
     const { token, user: userData } = res.data;
 
     localStorage.setItem('token', token);
@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   const register = useCallback(async (formData) => {
-    const res = await api.post('/api/auth/register', formData);
+    const res = await api.post('/auth/register', formData);
     const { token, user: userData } = res.data;
 
     localStorage.setItem('token', token);
