@@ -35,7 +35,7 @@ api.interceptors.response.use(
       localStorage.removeItem('token');
       delete api.defaults.headers.common['Authorization'];
       // Don't show toast for auth check on page load
-      if (!error.config.url.includes('/auth/me')) {
+      if (!error.config.url.includes('/api/auth/me')) {
         toast.error('Session expired. Please log in again.');
         window.location.href = '/login';
       }

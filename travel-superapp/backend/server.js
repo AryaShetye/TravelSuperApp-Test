@@ -36,7 +36,14 @@ const serpapiRoutes = require('./routes/serpapi.routes');
 const chatRoutes = require('./routes/chat.routes');
 
 const app = express();
+app.set('trust proxy',1);
 const server = http.createServer(app);
+app.get('/', (_req, res) => {
+  res.send("Travel Super App Backend Running 🚀");
+});
+
+
+
 
 // ─── Initialize Socket.io ─────────────────────────────────────────────────────
 initSocket(server);
@@ -49,14 +56,25 @@ app.use(helmet({
 // ─── CORS ─────────────────────────────────────────────────────────────────────
 app.use(cors({
   origin: [
-    process.env.FRONTEND_URL || 'http://localhost:3000',
+    process.env.FRONTEND_URL,
     'http://localhost:3000',
-    'http://localhost:3001',
+    'http://localhost:3001'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+// app.use(cors({
+//   origin: [
+//     process.env.FRONTEND_URL || 'http://localhost:3000',
+//     'http://localhost:3000',
+//     'http://localhost:3001',
+//   ],
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// }));
 
 // ─── Rate Limiting ────────────────────────────────────────────────────────────
 const globalLimiter = rateLimit({
