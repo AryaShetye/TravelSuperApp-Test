@@ -68,7 +68,7 @@ export default function Home() {
     try {
       const params = { limit: 8, sortBy: 'rating.average', sortOrder: 'desc' };
       if (activeCategory) params.propertyType = activeCategory;
-      const res = await api.get('/api/properties', { params });
+      const res = await api.get('/properties', { params });
       setFeaturedProperties(res.data.properties);
     } catch {
       // silently fail
@@ -81,7 +81,7 @@ export default function Home() {
     setTrendingLoading(true);
     try {
       // Uses SerpAPI Travel Explore with curated fallback
-      const res = await api.get('/api/explore');
+      const res = await api.get('/explore');
       setTrendingDestinations(res.data.destinations || []);
     } catch {
       // non-critical
