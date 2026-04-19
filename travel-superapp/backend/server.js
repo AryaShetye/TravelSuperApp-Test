@@ -13,7 +13,8 @@ const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 
 // Database
-const { initDB } = require('./config/db');
+// const { initDB } = require('./config/db');
+let pgPool;
 
 // Socket.io
 const { initSocket } = require('./services/socket.service');
@@ -91,7 +92,8 @@ app.get('/api/health', (_req, res) => {
     service: 'Travel Super App API',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV,
-    db: process.env.USE_MEMORY_DB === 'true' ? 'in-memory' : 'firebase',
+    mongo: mongoose.connection.readyState === 1 ? "connected" : "disconnected",
+    postgres: pgPool ? "connected" : "disconnected",
   });
 });
 
@@ -140,20 +142,26 @@ app.use((err, _req, res, _next) => {
 // ─── Start Server ─────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 5000;
 
+const { seedData } = require('./utils/seed');
+const { startPriceAlertJob } = require('./services/priceAlertJob');
+
 async function startServer() {
   try {
-    // Initialize database (Firebase or in-memory)
-    await initDB();
+    // ✅ Connect Mongo + Postgres
+    await connectDB();
 
-    // Seed initial data
-    const { seedData } = require('./utils/seed');
+    // ✅ Seed data
     await seedData();
 
+    // ✅ Start cron jobs
+    startPriceAlertJob();
+
+    // ✅ Start server
     server.listen(PORT, () => {
       console.log(`\n🚀 Travel Super App API running on port ${PORT}`);
       console.log(`📍 Environment: ${process.env.NODE_ENV}`);
-      console.log(`🌐 Health check: http://localhost:${PORT}/api/health\n`);
     });
+
   } catch (error) {
     console.error('❌ Failed to start server:', error);
     process.exit(1);
@@ -161,5 +169,27 @@ async function startServer() {
 }
 
 startServer();
+
+// async function startServer() {
+//   try {
+//     // Initialize database (Firebase or in-memory)
+//     await initDB();
+
+//     // Seed initial data
+//     const { seedData } = require('./utils/seed');
+//     await seedData();
+
+//     server.listen(PORT, () => {
+//       console.log(`\n🚀 Travel Super App API running on port ${PORT}`);
+//       console.log(`📍 Environment: ${process.env.NODE_ENV}`);
+//       console.log(`🌐 Health check: http://localhost:${PORT}/api/health\n`);
+//     });
+//   } catch (error) {
+//     console.error('❌ Failed to start server:', error);
+//     process.exit(1);
+//   }
+// }
+
+// startServer();
 
 module.exports = { app, server };
